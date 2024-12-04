@@ -2,16 +2,27 @@ import Image from "next/image";
 import Link from 'next/link'
 
 export default function Home() {
+  const navItems = ['Plugins', 'Themes', 'GitHub', 'Download', 'Blog'];
+  const osButtons = [
+    { src: '/windows.svg', alt: 'Windows logo' },
+    { src: '/linux.svg', alt: 'Linux logo' }
+  ];
+  const stats = [
+    { icon: '/download.svg', label: 'Downloads', value: '1.24k' },
+    { icon: '/star.svg', label: 'Rates', value: '4.9' },
+    { icon: '/puzzle.svg', label: 'Extensions', value: '23' }
+  ];
+  const terminalColors = ['red', 'yellow', 'green'];
+
   return (
     <div className="flex justify-center min-h-screen bg-black" suppressHydrationWarning>
       <div className="w-full max-w-xl border-x border-gray-900 text-white">
-        {/* Navigation */}
         <nav className="flex items-center justify-between p-4 max-w-xl mx-auto">
           <div className="flex items-center space-x-2">
             <Image src="/logo-small.svg" alt="Hyper Logo" width={28} height={28} priority />
           </div>
           <div className="flex items-center font-mono space-x-6">
-            {['Plugins', 'Themes', 'GitHub', 'Download', 'Blog'].map((item) => (
+            {navItems.map((item) => (
               <Link 
                 key={item}
                 href="#" 
@@ -26,7 +37,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Hero Section */}
         <main className="max-w-xl mx-auto py-16">
           <div className="flex flex-col items-start space-y-8">
             <Image src="/hyper.svg" alt="Hyper Logo" width={48} height={48} priority />
@@ -43,10 +53,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Terminal Preview */}
             <div className="w-full max-w-2xl bg-[#2D1E2F] rounded-[10px] overflow-hidden min-h-[220px]">
               <div className="flex items-center space-x-2 px-4 py-2 bg-black/20">
-                {['red', 'yellow', 'green'].map((color) => (
+                {terminalColors.map((color) => (
                   <div key={color} className={`w-3 h-3 rounded-full bg-${color}-500`} />
                 ))}
               </div>
@@ -57,29 +66,20 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Download Section */}
             <div className="flex flex-col space-y-8 w-full">
               <div className="flex space-x-4">
                 <button className="px-4 py-2 bg-white text-black font-mono rounded-[10px] flex items-center space-x-2 border border-neutral-800 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-400 hover:text-black">
                   <span>Download for macOS</span>
                 </button>
-                {[
-                  { src: '/windows.svg', alt: 'Windows logo' },
-                  { src: '/linux.svg', alt: 'Linux logo' }
-                ].map((os) => (
+                {osButtons.map((os) => (
                   <button key={os.alt} className="p-2 rounded-md">
                     <Image src={os.src} alt={os.alt} width={18} height={18} />
                   </button>
                 ))}
               </div>
 
-              {/* Stats */}
               <div className="grid grid-cols-3 font-mono border-y border-gray-900">
-                {[
-                  { icon: '/download.svg', label: 'Downloads', value: '1.24k' },
-                  { icon: '/star.svg', label: 'Rates', value: '4.9' },
-                  { icon: '/puzzle.svg', label: 'Extensions', value: '23' }
-                ].map((stat, index) => (
+                {stats.map((stat, index) => (
                   <div 
                     key={stat.label}
                     className={`flex flex-col items-right space-y-4 p-6 ${
